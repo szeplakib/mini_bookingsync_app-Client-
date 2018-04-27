@@ -12,15 +12,15 @@ gem 'faraday', '~> 0.14.0'
 gem 'webmock', '~> 3.3'
 gem 'bcrypt', '3.1.11'
 gem 'puma', '~> 3.7'
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier', '3.2.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'jsonapi-resources'
 gem 'jquery-rails', '~> 4.3', '>= 4.3.3'
 gem 'sass-rails', '~> 5.0', '>= 5.0.7'
-gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
-
+gem 'bootstrap-sass', '~> 3.2.0'
+gem 'autoprefixer-rails'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
