@@ -9,7 +9,7 @@
       <%= f.text_field :name, class: 'form-control' %>
       
       <%= f.label :daily_rate %>
-      <%= f.number_field :daily_rate, class: 'form-control' %>
+      <%= f.number_field :daily_rate, class: 'form-control', step: :any %>
 
       <%= f.submit 'Add', class: "btn btn-primary" %>
     <% end %>
