@@ -1,2 +1,2 @@
-module RentalsHelper
+module RentalsHelper 
 end

@@ -1,0 +1,22 @@
+<div class="jumbotron rounded-0">
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Daily rate</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @rentals.each do |rental| %>
+        <tr>
+          <td>          
+            <%= rental['name'] %>          
+          </td>
+          <td>          
+            <%= rental['daily_rate'].to_s + ' USD' %>          
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

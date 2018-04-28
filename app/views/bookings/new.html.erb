@@ -3,17 +3,14 @@
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <%= form_for(@booking, url: new_booking_path, html: {class: "center"}) do |f| %>
+    <%= form_for(@booking, url: bookings_path, html: {class: "center"}) do |f| %>
       <%= render 'shared/booking_error_messages' %>
-
+      <div class="row">
       <%= f.label :start_at %>
-      <br />
-      <%= f.date_select(:start_at, order: [:month, :day, :year]) %>
-      <br />
+      <%= f.date_select(:start_at) %>
       <%= f.label :end_at %>
-      <br />
-      <%= f.date_select(:end_at, order: [:month, :day, :year]) %>
-      <br />
+      <%= f.date_select(:end_at) %>
+      </div>
       <%= f.label "rental id" %>
       <%= f.text_field :rental_id, class: 'form-control' %>
       
