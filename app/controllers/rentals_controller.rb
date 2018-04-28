@@ -6,6 +6,7 @@ class RentalsController < ApplicationController
   end
 
   def new
+    @rental = Rental.new
   end
 
   def create
