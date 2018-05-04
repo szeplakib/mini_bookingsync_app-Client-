@@ -3,21 +3,18 @@
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <%= form_for(@booking, url: bookings_path, html: {class: "center"}) do |f| %>
-      <%= render 'shared/booking_error_messages' %>
+    <%= form_for(@booking, url: rental_bookings_path, html: {class: "center"}) do |f| %>
       <div class="row">
       <%= f.label :start_at %>
       <%= f.date_select(:start_at) %>
       <%= f.label :end_at %>
       <%= f.date_select(:end_at) %>
       </div>
-      <%= f.label "rental id" %>
-      <%= f.text_field :rental_id, class: 'form-control' %>
-      
-      <%= f.label :email %>
+      <%= f.label :'e-mail' %>
       <%= f.email_field :email, class: 'form-control' %>
 
       <%= f.submit 'Book me, please!', class: "btn btn-primary" %>
     <% end %>
   </div>
 </div>
+<%= render 'bookings/index_booking' %>

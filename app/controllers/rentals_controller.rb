@@ -2,6 +2,10 @@ class RentalsController < ApplicationController
   require 'faraday'
   include RentalsHelper
 
+  def book_a_rental
+    @rentals = get_rental_index
+  end
+
   def index
     @rentals = get_rental_index
   end

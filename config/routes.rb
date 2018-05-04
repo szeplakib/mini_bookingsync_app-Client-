@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   get '/help', to: 'static_pages#help'
   get '/about', to: 'static_pages#about'
   get '/contact', to: 'static_pages#contact'
-
-  resources :rentals
-  resources :bookings
+  get '/book_a_rental', to: 'rentals#book_a_rental'
+  resources :rentals do
+    resources :bookings
+  end
 end
