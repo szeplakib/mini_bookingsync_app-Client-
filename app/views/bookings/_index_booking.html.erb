@@ -5,6 +5,7 @@
       <tr>
         <th>From</th>
         <th>To</th>
+        <th>By</th>
       </tr>
     </thead>
     <tbody>
@@ -15,6 +16,9 @@
           </td>
           <td>          
             <%= booking['end_at'][0..9]%>          
+          </td>
+          <td>          
+            <%= booking['client_email']%>          
           </td>
         </tr>
       <% end %>
