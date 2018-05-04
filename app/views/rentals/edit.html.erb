@@ -1,0 +1,17 @@
+<% provide(:title, 'Edit rental') %>
+<h1>Edit</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@rental, url: rental_path, method: :patch, html: {class: "center"}) do |f| %>
+
+      <%= f.label :rental_name %>
+      <%= f.text_field :name, class: 'form-control' %>
+      
+      <%= f.label :daily_rate %>
+      <%= f.number_field :daily_rate, class: 'form-control', step: :any %>
+
+      <%= f.submit 'Add', class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

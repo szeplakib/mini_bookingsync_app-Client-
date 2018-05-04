@@ -32,9 +32,24 @@ class RentalsController < ApplicationController
   end
 
   def edit
+    response = send_show_rental(params)
+    @rental = Rental.new
+    @rental.name = JSON.parse(response.body)['name']
+    @rental.daily_rate = JSON.parse(response.body)['daily_rate'] # ez a resz okadek
   end
 
   def update
+    response = send_update_rental(params) # Ezt meg meg kéne nezni
+    if_successful_redirect(
+      {
+        status: 204,
+        response_status: response.status,
+        err_messages: { 'message' => 'Error: ' + response.status.to_s },
+        success_text: 'Rental updated successfully!',
+        success_path: rentals_path,
+        failure_path: rentals_path
+      }
+    )
   end
 
   def destroy
@@ -71,6 +86,15 @@ private
                                       }
   end
 
+  def send_show_rental(params)
+    conn = Faraday.new(url: 'http://localhost:3000') do |c|
+      c.use Faraday::Request::UrlEncoded
+      c.use Faraday::Response::Logger
+      c.use Faraday::Adapter::NetHttp
+    end
+    conn.get "/rentals/#{params[:id]}"
+  end
+
   def send_destroy_rental(params)
     conn = Faraday.new(url: 'http://localhost:3000') do |c|
       c.use Faraday::Request::UrlEncoded
@@ -78,6 +102,19 @@ private
       c.use Faraday::Adapter::NetHttp
     end
     conn.delete "/rentals/#{params[:id].to_s}"
+  end
+
+  def send_update_rental(params)
+    conn = Faraday.new(url: 'http://localhost:3000') do |c|
+      c.use Faraday::Request::UrlEncoded
+      c.use Faraday::Response::Logger
+      c.use Faraday::Adapter::NetHttp
+    end
+    conn.patch "/rentals/#{params[:id].to_s}",
+                                      { 
+                                      name: rental_params[:name],
+                                      daily_rate: rental_params[:daily_rate]
+                                      }
   end
 
   def get_rental_index()
