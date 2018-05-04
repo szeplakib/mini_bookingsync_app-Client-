@@ -3,7 +3,7 @@ class Booking
   include ActiveModel::Conversion
   extend  ActiveModel::Naming
   attr_accessor :rental_id,
-                :email,
+                :client_email,
                 :start_at,
                 :end_at,
                 :price

@@ -40,11 +40,11 @@ private
 
   def booking_params
     booking_p = params.require(:booking)
-    new_booking_p = {}
-    new_booking_p[:start_at] = join_date(booking_p[:'start_at(1i)'], booking_p[:'start_at(2i)'], booking_p[:'start_at(3i)'])
-    new_booking_p[:end_at] = join_date(booking_p[:'end_at(1i)'], booking_p[:'end_at(2i)'], booking_p[:'end_at(3i)'])
-    new_booking_p[:client_email] = booking_p[:email]
-    new_booking_p
+    {
+      start_at: join_date(booking_p[:'start_at(1i)'], booking_p[:'start_at(2i)'], booking_p[:'start_at(3i)']),
+      end_at: join_date(booking_p[:'end_at(1i)'], booking_p[:'end_at(2i)'], booking_p[:'end_at(3i)']),
+      client_email: booking_p[:client_email]
+    }
   end
 
   def join_date(year, month, day)
