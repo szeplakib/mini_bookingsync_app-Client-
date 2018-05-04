@@ -4,6 +4,7 @@
       <tr>
         <th>Name</th>
         <th>Daily rate</th>
+        <th>Remove?</th>
       </tr>
     </thead>
     <tbody>
@@ -14,6 +15,9 @@
           </td>
           <td>          
             <%= rental['daily_rate'].to_s + ' USD' %>          
+          </td>
+          <td>
+          <%= link_to "Remove!", '/rentals/' + rental['id'].to_s, method: :delete %>
           </td>
         </tr>
       <% end %>
