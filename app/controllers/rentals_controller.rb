@@ -11,6 +11,9 @@ class RentalsController < ApplicationController
   end
 
   def show
+    response = send_show_rental_request(params)
+    @rental = JSON.parse(response.body)['rental']
+    @bookings = JSON.parse(response.body)['bookings']
   end
 
   def new
@@ -34,8 +37,8 @@ class RentalsController < ApplicationController
   def edit
     response = send_show_rental_request(params)
     @rental = Rental.new(
-      name: JSON.parse(response.body)['name'],
-      daily_rate: JSON.parse(response.body)['daily_rate']
+      name: JSON.parse(response.body)['rental']['name'],
+      daily_rate: JSON.parse(response.body)['rental']['daily_rate']
     )
   end
 
@@ -45,7 +48,7 @@ class RentalsController < ApplicationController
       {
         status: 204,
         response_status: response.status,
-        err_messages: { 'message' => 'Error: ' + response.status.to_s },
+        err_messages: JSON.parse(response.body),
         success_text: 'Rental updated successfully!',
         success_path: rentals_path,
         failure_path: rentals_path

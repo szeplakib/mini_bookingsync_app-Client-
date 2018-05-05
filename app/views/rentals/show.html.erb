@@ -1,0 +1,10 @@
+<% provide(:title, @rental['name']) %>
+<h1>All bookings for <%= @rental['name'] %></h1>
+<pre>
+ID:         <%= @rental['id'] %>
+Name:       <%= @rental['name'] %>
+Daily rate: <%= @rental['daily_rate'] %>
+Created at: <%= @rental['created_at'] %>
+Updated at: <%= @rental['updated_at'] %>
+</pre>
+<%= render 'rentals/show_rental' %>
