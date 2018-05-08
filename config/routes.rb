@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   get '/about', to: 'static_pages#about'
   get '/contact', to: 'static_pages#contact'
   get '/book_a_rental', to: 'rentals#book_a_rental'
+  get '/bookings', to: 'bookings#index'
   resources :rentals do
-    resources :bookings
+    resources :bookings, only: %i[new create]
   end
 end

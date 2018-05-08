@@ -79,8 +79,11 @@ class RentalsController < ApplicationController
   end
 
   def send_create_rental_request(rental_params)
-    connect_api.post '/rentals',  name: rental_params[:name],
-                                  daily_rate: rental_params[:daily_rate]
+    connect_api.post(
+      '/rentals',
+      name: rental_params[:name],
+      daily_rate: rental_params[:daily_rate]
+    )
   end
 
   def send_show_rental_request(params)
@@ -92,8 +95,11 @@ class RentalsController < ApplicationController
   end
 
   def send_update_rental_request(params)
-    connect_api.patch "/rentals/#{params[:id]}",  name: rental_params[:name],
-                                                  daily_rate: rental_params[:daily_rate]
+    connect_api.patch(
+      "/rentals/#{params[:id]}",
+      name: rental_params[:name],
+      daily_rate: rental_params[:daily_rate]
+    )
   end
 
   def send_rental_index_request()
