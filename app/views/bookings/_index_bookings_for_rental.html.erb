@@ -1,27 +1,29 @@
 <div>
 <h3> Reserved dates </h3>
-  <table class="table table-striped table-hover">
-    <thead>
-      <tr>
-        <th>From</th>
-        <th>To</th>
-        <th>By</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @bookings.sort_by{ |element| element['start_at'] }.each do |booking| %>
+  <div class="jumbotron rounded-0">
+    <table class="table table-striped table-hover">
+      <thead>
         <tr>
-          <td>          
-            <%= booking['start_at'][0..9] %>          
-          </td>
-          <td>          
-            <%= booking['end_at'][0..9]%>          
-          </td>
-          <td>          
-            <%= booking['client_email']%>          
-          </td>
+          <th>From</th>
+          <th>To</th>
+          <th>By</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <% @bookings.sort_by{ |element| element['start_at'] }.each do |booking| %>
+          <tr>
+            <td>          
+              <%= booking['start_at'][0..9] %>          
+            </td>
+            <td>          
+              <%= booking['end_at'][0..9]%>          
+            </td>
+            <td>          
+              <%= booking['client_email']%>          
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>

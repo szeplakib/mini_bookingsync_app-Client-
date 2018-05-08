@@ -7,6 +7,6 @@ Rails.application.routes.draw do
   get '/book_a_rental', to: 'rentals#book_a_rental'
   get '/bookings', to: 'bookings#index'
   resources :rentals do
-    resources :bookings, only: %i[new create]
+    resources :bookings, only: %i[new create destroy show edit update]
   end
 end

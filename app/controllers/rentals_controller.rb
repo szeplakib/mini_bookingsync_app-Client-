@@ -11,7 +11,7 @@ class RentalsController < ApplicationController
   end
 
   def show
-    response = send_show_rental_request(params)
+    response = send_rental_show_request(params)
     @rental = JSON.parse(response.body)['rental']
     @bookings = JSON.parse(response.body)['bookings']
   end
@@ -26,14 +26,14 @@ class RentalsController < ApplicationController
       status: 201,
       response_status: response.status,
       err_messages: JSON.parse(response.body),
-      success_text: 'Rental successfully created!',
+      success_text: 'Rental has been successfully created!',
       success_path: new_rental_path,
       failure_path: new_rental_path
     )
   end
 
   def edit
-    response = send_show_rental_request(params)
+    response = send_rental_show_request(params)
     @rental = Rental.new(
       name: JSON.parse(response.body)['rental']['name'],
       daily_rate: JSON.parse(response.body)['rental']['daily_rate']
@@ -41,24 +41,24 @@ class RentalsController < ApplicationController
   end
 
   def update
-    response = send_update_rental_request(params) # Ezt meg meg kéne nezni
+    response = send_rental_update_request(params) # Ezt meg meg kéne nezni
     if_successful_redirect(
       status: 200,
       response_status: response.status,
       err_messages: JSON.parse(response.body),
-      success_text: 'Rental updated successfully!',
+      success_text: 'Rental has been updated successfully!',
       success_path: rentals_path,
-      failure_path: rentals_path
+      failure_path: edit_rental_path
     )
   end
 
   def destroy
-    response = send_destroy_rental_request(params) # Ezt meg meg kéne nezni
+    response = send_rental_destroy_request(params) # Ezt meg meg kéne nezni
     if_successful_redirect(
       status: 204,
       response_status: response.status,
       err_messages: { 'message' => 'Error: ' + response.status.to_s },
-      success_text: 'Rental removed successfully!',
+      success_text: 'Rental has been removed successfully!',
       success_path: rentals_path,
       failure_path: rentals_path
     )
@@ -86,15 +86,15 @@ class RentalsController < ApplicationController
     )
   end
 
-  def send_show_rental_request(params)
+  def send_rental_show_request(params)
     connect_api.get "/rentals/#{params[:id]}"
   end
 
-  def send_destroy_rental_request(params)
+  def send_rental_destroy_request(params)
     connect_api.delete "/rentals/#{params[:id]}"
   end
 
-  def send_update_rental_request(params)
+  def send_rental_update_request(params)
     connect_api.patch(
       "/rentals/#{params[:id]}",
       name: rental_params[:name],

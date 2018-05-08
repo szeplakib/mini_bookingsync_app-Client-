@@ -17,19 +17,43 @@ class BookingsController < ApplicationController
       status: 201,
       response_status: response.status,
       err_messages: JSON.parse(response.body),
-      success_text: 'Rental updated successfully!',
-      success_path: new_rental_booking_path,
+      success_text: 'Rental has been booked successfully!',
+      success_path: bookings_path,
       failure_path: new_rental_booking_path
     )
   end
 
   def edit
+    response = send_booking_show_request(params)
+    @booking = Booking.new(
+      start_at: JSON.parse(response.body)['start_at'][0..9].to_date,
+      end_at: JSON.parse(response.body)['end_at'][0..9].to_date,
+      client_email: JSON.parse(response.body)['client_email']
+    )
   end
 
   def update
+    response = send_booking_update_request(booking_params)
+    if_successful_redirect(
+      status: 200,
+      response_status: response.status,
+      err_messages: JSON.parse(response.body),
+      success_text: 'Booking has been updated successfully!',
+      success_path: bookings_path,
+      failure_path: edit_rental_booking_path
+    )
   end
 
   def destroy
+    response = send_booking_destroy_request(params)
+    if_successful_redirect(
+      status: 204,
+      response_status: response.status,
+      err_messages: { 'message' => 'Error: ' + response.status.to_s },
+      success_text: 'Booking has been removed successfully!',
+      success_path: bookings_path,
+      failure_path: bookings_path
+    )
   end
 
   private
@@ -41,6 +65,8 @@ class BookingsController < ApplicationController
       c.use Faraday::Adapter::NetHttp
     end
   end
+
+  # Erről megkérdezni Danit
 
   def rental_params
     params.permit(:rental_id)
@@ -85,6 +111,23 @@ class BookingsController < ApplicationController
       start_at: booking_params[:start_at],
       end_at: booking_params[:end_at]
     )
+  end
+
+  def send_booking_show_request(params)
+    connect_api.get "/rentals/#{params[:rental_id]}/bookings/#{params[:id]}"
+  end
+
+  def send_booking_update_request(booking_params)
+    connect_api.patch(
+      "/rentals/#{params[:rental_id]}/bookings/#{params[:id]}",
+      start_at: booking_params[:start_at],
+      end_at: booking_params[:end_at],
+      client_email: booking_params[:client_email]
+    )
+  end
+
+  def send_booking_destroy_request(params)
+    connect_api.delete "/rentals/#{params[:rental_id]}/bookings/#{params[:id]}"
   end
 
   def if_successful_redirect(options)

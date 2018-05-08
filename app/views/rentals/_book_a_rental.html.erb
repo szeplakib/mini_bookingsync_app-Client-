@@ -16,7 +16,9 @@
             <%= rental['daily_rate'].to_s + ' USD' %>          
           </td>
           <td>
-            <%= link_to "Book me!", '/rentals/' + rental['id'].to_s + '/bookings/new', method: :get %>
+            <div class="pull-right">
+            <%= link_to "Book me!", '/rentals/' + rental['id'].to_s + '/bookings/new', class: "btn btn-sm btn-primary", method: :get %>
+            </div>
           </td>
         </tr>
       <% end %>

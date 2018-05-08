@@ -17,19 +17,19 @@
             <%= booking['client_email'] %>          
           </td>
           <td>          
-            <%= booking['start_at'] %>          
+            <%= booking['start_at'][0..9] %>          
           </td>
           <td>          
-            <%= booking['end_at'] %>          
+            <%= booking['end_at'][0..9] %>          
           </td>
           <td>          
             <%= booking['price'] %>          
           </td>
           <td>          
-            <%= booking['created_at'] %>          
+            <%= booking['created_at'][0..9] %>          
           </td>
           <td>          
-            <%= booking['updated_at'] %>          
+            <%= booking['updated_at'][0..9] %>          
           </td>
 
         </tr>

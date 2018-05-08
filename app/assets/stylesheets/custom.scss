@@ -24,6 +24,7 @@ textarea {
 .navbar {
   background-color: DodgerBlue;
   border-color: DodgerBlue;
+  position:fixed;
 }
 
 .navbar-inverse .navbar-nav > li > a {
@@ -33,6 +34,12 @@ textarea {
     background-color: #0081e0;
     text-decoration: none;
   }
+}
+
+.btn-primary 
+{
+    margin: 0 0px;  
+    border-radius: 0;
 }
 
 * {
