@@ -1,0 +1,15 @@
+<% provide(:title, 'Provide your e-mail') %>
+
+<h1>Provide your e-mail address</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@booking, url: my_bookings_path, html: {class: "center", method: 'GET'}) do |f| %>
+
+      <%= f.label :'e-mail' %>
+      <%= f.email_field :client_email, class: 'form-control' %>
+
+      <%= f.submit 'Go!', class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

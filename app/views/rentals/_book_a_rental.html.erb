@@ -1,27 +1,25 @@
-<div class="jumbotron rounded-0">
-  <table class="table table-striped table-hover">
-    <thead>
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Daily rate</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @rentals.each do |rental| %>
       <tr>
-        <th>Name</th>
-        <th>Daily rate</th>
+        <td>          
+          <%= rental['name'] %>          
+        </td>
+        <td>          
+          <%= rental['daily_rate'].to_s + ' USD' %>          
+        </td>
+        <td>
+          <div class="pull-right">
+          <%= link_to "Book me!", '/rentals/' + rental['id'].to_s + '/bookings/new', class: "btn btn-sm btn-primary", method: :get %>
+          </div>
+        </td>
       </tr>
-    </thead>
-    <tbody>
-      <% @rentals.each do |rental| %>
-        <tr>
-          <td>          
-            <%= rental['name'] %>          
-          </td>
-          <td>          
-            <%= rental['daily_rate'].to_s + ' USD' %>          
-          </td>
-          <td>
-            <div class="pull-right">
-            <%= link_to "Book me!", '/rentals/' + rental['id'].to_s + '/bookings/new', class: "btn btn-sm btn-primary", method: :get %>
-            </div>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
+    <% end %>
+  </tbody>
+</table>

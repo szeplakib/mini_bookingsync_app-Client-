@@ -1,39 +1,36 @@
-<div class="jumbotron rounded-0">
-  <table class="table table-striped table-hover">
-    <thead>
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th> E-mail </th>
+      <th> Start at </th>
+      <th> End at </th>
+      <th> Price </th>
+      <th> Created at </th>
+      <th> Updated at </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @bookings.each do |booking| %>
       <tr>
-        <th> E-mail </th>
-        <th> Start at </th>
-        <th> End at </th>
-        <th> Price </th>
-        <th> Created at </th>
-        <th> Updated at </th>
+        <td>          
+          <%= booking['client_email'] %>          
+        </td>
+        <td>          
+          <%= booking['start_at'][0..9] %>          
+        </td>
+        <td>          
+          <%= booking['end_at'][0..9] %>          
+        </td>
+        <td>          
+          <%= booking['price'] %>          
+        </td>
+        <td>          
+          <%= booking['created_at'][0..9] %>          
+        </td>
+        <td>          
+          <%= booking['updated_at'][0..9] %>          
+        </td>
       </tr>
-    </thead>
-    <tbody>
-      <% @bookings.each do |booking| %>
-        <tr>
-          <td>          
-            <%= booking['client_email'] %>          
-          </td>
-          <td>          
-            <%= booking['start_at'][0..9] %>          
-          </td>
-          <td>          
-            <%= booking['end_at'][0..9] %>          
-          </td>
-          <td>          
-            <%= booking['price'] %>          
-          </td>
-          <td>          
-            <%= booking['created_at'][0..9] %>          
-          </td>
-          <td>          
-            <%= booking['updated_at'][0..9] %>          
-          </td>
-
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
+    <% end %>
+  </tbody>
+</table>

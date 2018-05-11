@@ -1,9 +1,20 @@
 class BookingsController < ApplicationController
+
+  def set_my_email
+    @booking = Booking.new
+  end
+
+  def my_bookings
+    @bookings = send_booking_index_by_email_request(booking_params)
+  end
+
   def index
     @bookings = send_booking_index_for_all_request
   end
 
   def show
+    response = send_booking_show_request(params)
+    @booking = JSON.parse(response.body)
   end
 
   def new
@@ -66,7 +77,7 @@ class BookingsController < ApplicationController
     end
   end
 
-  # Erről megkérdezni Danit
+  # Errol megkerdezni Danit
 
   def rental_params
     params.permit(:rental_id)
@@ -92,6 +103,23 @@ class BookingsController < ApplicationController
 
   def join_date(year, month, day)
     [year, month, day].join('-')
+  end
+
+  def redirect_for_blank_email
+    flash[:danger] = 'Provide a valid e-mail address, please!'
+    redirect_to my_email_path
+  end
+
+  def redirect_for_email_not_found
+    flash[:danger] = 'E-mail address not found!'
+    redirect_to my_email_path
+  end
+
+  def send_booking_index_by_email_request(booking_params)
+    return redirect_for_blank_email if booking_params[:client_email].blank?
+    response = connect_api.get '/bookings_by_email', client_email: booking_params[:client_email]
+    return redirect_for_email_not_found if response.status == 404
+    JSON.parse(response.body)
   end
 
   def send_booking_index_for_rental_request(rental_id)

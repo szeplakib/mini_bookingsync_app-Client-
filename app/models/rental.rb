@@ -3,8 +3,8 @@ class Rental
   extend  ActiveModel::Naming
   attr_accessor :name,
                 :daily_rate
-  def initialize(arg = {name: nil, daily_rate: nil})
-    @name = arg[:name]
-    @daily_rate = arg[:daily_rate]
+  def initialize(name: nil, daily_rate: nil)
+    @name = name
+    @daily_rate = daily_rate
   end
 end

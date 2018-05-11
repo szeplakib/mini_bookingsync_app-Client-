@@ -41,7 +41,7 @@ class RentalsController < ApplicationController
   end
 
   def update
-    response = send_rental_update_request(params) # Ezt meg meg kéne nezni
+    response = send_rental_update_request(params)
     if_successful_redirect(
       status: 200,
       response_status: response.status,
@@ -53,7 +53,7 @@ class RentalsController < ApplicationController
   end
 
   def destroy
-    response = send_rental_destroy_request(params) # Ezt meg meg kéne nezni
+    response = send_rental_destroy_request(params)
     if_successful_redirect(
       status: 204,
       response_status: response.status,
@@ -73,7 +73,7 @@ class RentalsController < ApplicationController
       c.use Faraday::Adapter::NetHttp
     end
   end
-
+  # Az osszes params-t megnezni
   def rental_params
     params.require(:rental).permit(:name, :daily_rate)
   end

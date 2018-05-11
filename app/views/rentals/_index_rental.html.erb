@@ -1,29 +1,27 @@
-<div class="jumbotron rounded-0">
-  <table class="table table-striped table-hover">
-    <thead>
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Daily rate</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @rentals.each do |rental| %>
       <tr>
-        <th>Name</th>
-        <th>Daily rate</th>
+        <td>          
+          <%= rental['name'] %>          
+        </td>
+        <td>          
+          <%= rental['daily_rate'].to_s + ' USD' %>          
+        </td>
+        <td>
+          <div class="pull-right">
+            <%= link_to "Show bookings", "/rentals/#{rental['id']}", class: "btn btn-sm btn-primary", method: :get %>
+            <%= link_to "Edit", "/rentals/#{rental['id']}/edit", class: "btn btn-sm btn-primary", method: :get %>
+            <%= link_to "Remove", "/rentals/#{rental['id']}", class: "btn btn-sm btn-primary", method: :delete %>
+          </div>
+        </td>
       </tr>
-    </thead>
-    <tbody>
-      <% @rentals.each do |rental| %>
-        <tr>
-          <td>          
-            <%= rental['name'] %>          
-          </td>
-          <td>          
-            <%= rental['daily_rate'].to_s + ' USD' %>          
-          </td>
-          <td>
-            <div class="pull-right">
-              <%= link_to "Show bookings", "/rentals/#{rental['id']}", class: "btn btn-sm btn-primary", method: :get %>
-              <%= link_to "Edit", "/rentals/#{rental['id']}/edit", class: "btn btn-sm btn-primary", method: :get %>
-              <%= link_to "Remove", "/rentals/#{rental['id']}", class: "btn btn-sm btn-primary", method: :delete %>
-            </div>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
+    <% end %>
+  </tbody>
+</table>

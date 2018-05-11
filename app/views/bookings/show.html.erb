@@ -1,0 +1,12 @@
+<% provide(:title,"Booking #{@booking['id']}") %>
+<div class="jumbotron rounded-0">
+<h1>Booking</h1>
+<pre>
+ID:         <%= @booking['id'] %>
+Rental ID:  <%= @booking['rental_id'] %>
+Starts at:  <%= @booking['start_at'] %>
+Ends at:    <%= @booking['end_at'] %>
+Price:      <%= @booking['price'] %>
+Created at: <%= @booking['created_at'] %>
+Updated at: <%= @booking['updated_at'] %>
+</pre>
