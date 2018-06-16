@@ -1,24 +1,15 @@
-# README
+# Mini bookingsync app(Client)
+This is a sample project, and a client app for the [Mini-BookingSync API](https://github.com/szeplakib/mini_bookingsync_app-API-), a Ruby on Rails booking API.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+To run it, you need Mini-BookingSync API running on another port.
 
-Things you may want to cover:
+# Requirements:
+* Ruby version: 2.5.0
 
-* Ruby version
+* Rails version: 5.1.6
 
-* System dependencies
+* Database: Postgresql: 10.3
 
-* Configuration
+* The required gems are listed in in the gem file
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* [Mini-BookingSync Api](https://github.com/szeplakib/mini_bookingsync_app-API-)
