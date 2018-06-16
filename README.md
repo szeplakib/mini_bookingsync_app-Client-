@@ -12,4 +12,4 @@ To run it, you need Mini-BookingSync API running on another port.
 
 * The required gems are listed in in the gem file
 
-* [Mini-BookingSync Api](https://github.com/szeplakib/mini_bookingsync_app-API-)
+* [Mini-BookingSync API](https://github.com/szeplakib/mini_bookingsync_app-API-)
